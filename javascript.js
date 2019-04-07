@@ -1,3 +1,14 @@
+// // Querida Maru, te dejo mis observaciones a tu TP
+// En general esta muy bien. Tu codigo es claro, tus variables estan bien nombradas y tus soluciones
+// reflejan tu comprension de los temas vistos. 
+// Esto es un detalle, pero si fuera un challenge para una empresa, por ejemplo, no quedaria bien que 
+// dejes los console.log, ni siquiera comentados. Siempre hay que sacarlos en un trabajo terminado, 
+// ya que no suman nada e interrumpen la lectura de tu codigo. 
+// Pero personalmente, aprecie muchisimo tus comentarios y voy a implementar la escala del chihuaha para
+// corregir los proximos tps. 
+// El resumen de tu trabajo en la escala del chihuahua es un muy merecido 3 
+
+
 var local = {
   vendedoras: ["Ada", "Grace", "Hedy", "Sheryl"],
 
@@ -81,7 +92,6 @@ function cantidadVentasComponente(articulo) {
   for (var i = 0; i < local.ventas.length; i++) {
        var ventasComp = local.ventas[i].componentes;
        // console.log(ventasComp);
-
        for (var j = 0; j < local.ventas[j].componentes.length; j++) {
         if (articulo === local.ventas[i].componentes[j] ) {
             vendido += 1;
@@ -111,6 +121,8 @@ console.log( "Se vendieron", cantidadVentasComponente("Monitor ASC 543"), "unida
 
 
 // Mood mientras hacía esta función: FOTOS 1 - 6 Y 9 ----------> https://bit.ly/2FcAmnD
+
+// 😂😂😂😂😂
 
 
 function vendedoraDelMes(mes, anio) {
@@ -166,6 +178,38 @@ function vendedoraDelMes(mes, anio) {
   console.log(vendedoraDelMes(1, 2019)); // "Ada" (vendio por $670, una máquina de $320 y otra de $350)
 
 
+// Te dejo una manera sin "hardcodear" los nombres de las vendedoras, por si queres chusmearla:
+// function vendedoraDelMes(mes, anio) {
+//     var arrayVendedoras = [];
+//     for (var i = 0; i < local.vendedoras.length; i++) {
+//         var vendorasObj = {
+//             nombre: local.vendedoras[i],
+//             ventas: 0,
+//         }
+//         for (var j = 0; j < local.ventas.length; j++) {
+//             if (local.ventas[j].fecha.getMonth() + 1 == mes && local.ventas[i].fecha.getFullYear() == anio) {
+//                 var precioComponentes = precioMaquina(local.ventas[j].componentes)
+//                 if (local.vendedoras[i] === local.ventas[j].nombreVendedora) {
+//                     if (vendorasObj.nombre === local.ventas[j].nombreVendedora) {
+//                         vendorasObj.ventas = vendorasObj.ventas + precioComponentes;
+//                     }
+//                 }
+//             }
+//         }
+//         arrayVendedoras.push(vendorasObj)
+//     }
+
+//     var mejorVendedora;
+//     var ventaMax = 0;
+
+//     for (var k = 0; k < arrayVendedoras.length; k++) {
+//         if (arrayVendedoras[k].ventas) {
+//             ventaMax = arrayVendedoras[k].ventas;
+//             mejorVendedora = arrayVendedoras[k].nombre;
+//             return 'La vendedora del mes es' + ' ' + mejorVendedora + ' ' + 'con' + ' ' + ventaMax + ' ' + 'pesos vendidos'
+//         }
+//     }
+// }
 
 
 
@@ -176,7 +220,7 @@ function vendedoraDelMes(mes, anio) {
 // Obtener las ventas de un mes.
 
 // Mood mientras hacía esta función: FOTO 7 ----------> https://bit.ly/2FcAmnD
-
+// eso es bueno o malo?
 
 function ventasMes(mes, anio) {
 
@@ -284,6 +328,10 @@ function huboVentas(mes, anio) {
  }
  return venta
 }
+// te dejo una manera alternaiva super breve ( mi cara es un 4 en la escala del chihuahua)
+// function huboVentas (mes, anio) {
+//   return ventasMes(mes, anio) > 0;
+// }
 
 
 console.log( huboVentas(0, 2019) ); // false
@@ -395,6 +443,17 @@ console.log( ventasSucursal("Centro") ); // 4195
 
 }
 
+// o tambien podriamos decir:
+//  function ventasVendedoraOsucursal (consulta){
+//     var resultado = 0;
+//     for (var i = 0; i < local.ventas.length; i++) {
+//       if (local.ventas[i].nombreVendedora === consulta || local.ventas[i].sucursal === consulta){
+//       resultado +=  precioMaquina(local.ventas[i].componentes)
+//        }
+//     }
+//  return resultado
+// }
+
  
   console.log( ventasVendedoraOsucursal("Ada") ); // 1010
   console.log( ventasVendedoraOsucursal("Centro") ); // 4195
@@ -486,7 +545,9 @@ return msj
 function render() {
   var ventasPorMes = renderPorMes();
   var ventasPorSucursal = renderPorSucursal ();
-  var ventasVendedora = "La vendedora que más ventas hizo fue:" + vendedoraDelMes();
+  var ventasVendedora = "La vendedora que más ventas hizo fue:" + vendedoraDelMes(); // ojo, la idea era encontrar
+  // la vendedora que hizo mas ventas sin limite de fecha (y si llamamos a vendedoraDelMes sin pasarle parametros,
+//   se nos va a romper, dando de resultado 0 en todo!)
   var artMasVendido = "El árticulo más vendido fue:" + componenteMasVendido ();
 
   return ventasPorMes + ";" + ventasPorSucursal + ";" +  ventasVendedora + ";" + artMasVendido
